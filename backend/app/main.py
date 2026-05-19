@@ -6,7 +6,7 @@ from loguru import logger
 
 from app.config import settings
 from app.database import create_tables
-from app.routes import health, chat, network, memory
+from app.routes import health, chat, network, memory, self_edit
 from app.models import conversation, message
 
 @asynccontextmanager
@@ -39,6 +39,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 app.include_router(health.router, prefix="/api", tags=["Health"])
 app.include_router(chat.router, prefix="/api", tags=["Chat"])
 app.include_router(memory.router, prefix="/api", tags=["Memory"])
+app.include_router(self_edit.router, prefix="/api", tags=["SelfEdit"])
 app.include_router(network.router, prefix="/api", tags=["Network"])
 
 @app.get("/")
